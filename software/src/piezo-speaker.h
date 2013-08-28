@@ -26,6 +26,9 @@
 
 #include "bricklib/com/com_common.h"
 
+#define FREQUENCY_VALUE_SUM_MAX 512
+#define FREQUENCY_VALUE_MAX 256
+
 #define I2C_EEPROM_ADDRESS_HIGH 84
 
 #define I2C_ADDRESS_HIGH 47 // 0b0101111

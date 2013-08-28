@@ -60,23 +60,31 @@ uint8_t get_i2c_address(void) {
 }
 
 void set_frequency(uint16_t frequency) {
-	frequency = BETWEEN(460, frequency, 7000);
-	const uint16_t value = SCALE(frequency, 460, 7000, 0, 256);
+	frequency = MIN(frequency, FREQUENCY_VALUE_SUM_MAX);
+	uint16_t value1 = frequency;
+	uint16_t value2 = 0;
 
-	const uint8_t command_bit = value & (1 << 8) ? 1 : 0;
+	if(frequency > FREQUENCY_VALUE_MAX) {
+		value1 = FREQUENCY_VALUE_MAX;
+		value2 = frequency - FREQUENCY_VALUE_MAX;
+	}
+
+	const uint8_t command_bit1 = value1 & (1 << 8) ? 1 : 0;
+	const uint8_t command_bit2 = value2 & (1 << 8) ? 1 : 0;
 
 	uint8_t data[3];
-	data[0] = value & 0xFF;
-	data[1] = I2C_COMMAND_WIPER1 | I2C_ACTION_WRITE | command_bit;
-	data[2] = data[0];
+	data[0] = value1 & 0xFF;
+	data[1] = I2C_COMMAND_WIPER1 | I2C_ACTION_WRITE | command_bit2;
+
+	data[2] = value2 & 0xFF;
 
 	if(BA->mutex_take(*BA->mutex_twi_bricklet, 10)) {
 		BA->bricklet_select(BS->port - 'a');
 		BA->TWID_Write(BA->twid,
 		               get_i2c_address(),
-					   I2C_COMMAND_WIPER0 | I2C_ACTION_WRITE | command_bit,
+					   I2C_COMMAND_WIPER0 | I2C_ACTION_WRITE | command_bit1,
 					   1,
-					   &data,
+					   data,
 					   3,
 					   (Async*)NULL);
 		BA->bricklet_deselect(BS->port - 'a');
