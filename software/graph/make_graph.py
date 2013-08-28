@@ -16,7 +16,7 @@ for i in range (17, 218):
     y_low.append(value_y*CONFIDENCE)
     y_high.append(value_y*(2-CONFIDENCE))
 
-    x.append((i-17)*(515.00)/(218-17))
+    x.append((i-17)*(512.00)/(217-17))
 
 fig, ax = plt.subplots(1, sharex=True, sharey=True)
 
@@ -31,7 +31,7 @@ b1 = plt.bar(np.array([1,2])-.2,
              alpha=0.3) 
 plt.legend([b1[0]], ['Confidence (80%)'], shadow=True, fancybox=True, numpoints=1) 
 
-plt.axis([0, 515, 0, 7002])
+plt.axis([0, 512, 0, y[0]])
 plt.ylabel('Frequency (Hz)')
 plt.xlabel('Value')
 plt.show()
