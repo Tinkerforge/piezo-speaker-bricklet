@@ -42,8 +42,10 @@
 #define BOARD_MCK 64000000
 #define INVOCATION_IN_BRICKLET_CODE
 
-#define PIN_ENABLE (BS->pin1_ad)
+#define PIN_ENABLE   (BS->pin1_ad)
+#define PIN_FEEDBACK (BS->pin4_io)
 #define MORSE_LENGTH 60
+#define CALIBRATION_LENGTH 65
 
 typedef struct {
 	uint32_t beep_duration;
@@ -54,6 +56,8 @@ typedef struct {
 
 	bool beep_finished;
 	bool morse_finished;
+
+	uint16_t frequency_match[CALIBRATION_LENGTH];
 } BrickContext;
 
 #endif

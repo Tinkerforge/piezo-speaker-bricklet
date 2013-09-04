@@ -26,8 +26,17 @@
 
 #include "bricklib/com/com_common.h"
 
+#define EEPROM_CALIBRATION_POSITION (I2C_EEPROM_INTERNAL_ADDRESS_PLUGIN + \
+                                     BRICKLET_PLUGIN_MAX_SIZE)
+#define EEPROM_CALIBRATION_LENGTH   CALIBRATION_LENGTH
+
+#define FEEDBACK_TICK_MAX 63999
+
 #define FREQUENCY_VALUE_SUM_MAX 512
 #define FREQUENCY_VALUE_MAX 256
+
+#define FREQUENCY_MIN 585
+#define FREQUENCY_MAX 7100
 
 #define I2C_EEPROM_ADDRESS_HIGH 84
 
@@ -46,8 +55,9 @@
 
 #define FID_BEEP 1
 #define FID_MORSE_CODE 2
-#define FID_BEEP_FINISHED 3
-#define FID_MORSE_CODE_FINISHED 4
+#define FID_CALIBRATE 3
+#define FID_BEEP_FINISHED 4
+#define FID_MORSE_CODE_FINISHED 5
 
 typedef struct {
 	MessageHeader header;
@@ -65,10 +75,23 @@ typedef struct {
 	uint16_t frequency;
 } __attribute__((__packed__)) MorseCode;
 
+typedef struct {
+	MessageHeader header;
+} __attribute__((__packed__)) Calibrate;
+
+typedef struct {
+	MessageHeader header;
+	bool calibration;
+} __attribute__((__packed__)) CalibrateReturn;
+
 uint8_t get_i2c_address(void);
 void set_frequency(uint16_t frequency);
 void beep(const ComType com, const Beep *data);
 void morse_code(const ComType com, const MorseCode *data);
+void calibrate(const ComType com, const Calibrate *data);
+
+void load_calibration(void);
+void save_calibration(void);
 
 void invocation(const ComType com, const uint8_t *data);
 void constructor(void);
