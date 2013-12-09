@@ -142,6 +142,7 @@ void constructor(void) {
     BC->morse_duration = 0;
     BC->morse_buzz = false;
     BC->beep_duration = 0;
+    BC->morse_length = 0;
 
     load_calibration();
 }
@@ -158,7 +159,7 @@ void destructor(void) {
 
 void beep(const ComType com, const Beep *data) {
 	// Disable morse code beeping
-	BC->morse_pos = MORSE_LENGTH;
+	BC->morse_pos = MAX_MORSE_LENGTH;
     BC->morse_duration = 0;
     BC->morse_buzz = false;
 
@@ -180,15 +181,16 @@ void morse_code(const ComType com, const MorseCode *data) {
 	BC->morse_duration = 0;
 	BC->morse_buzz = false;
 
-	for(uint8_t i = 0; i < MORSE_LENGTH; i++) {
+	uint8_t i = 0;
+	for(; i < MAX_MORSE_LENGTH; i++) {
 		if(data->morse[i] != '.' && data->morse[i] != '-' && data->morse[i] != ' ') {
-			BA->com_return_error(data, sizeof(MessageHeader), MESSAGE_ERROR_CODE_INVALID_PARAMETER, com);
-			return;
+			break;
 		}
 
 		BC->morse[i] = data->morse[i];
 	}
 
+	BC->morse_length = i+1;
 	set_frequency(frequency_to_frequency_value(data->frequency));
 
 	BA->com_return_setter(com, data);
@@ -332,7 +334,7 @@ void tick(const uint8_t tick_type) {
 
 		bool not_ready = true;
 
-		while(BC->morse_pos < MORSE_LENGTH &&
+		while(BC->morse_pos < BC->morse_length &&
 			  BC->morse_duration == 0 &&
 			  not_ready) {
 			switch(BC->morse[BC->morse_pos]) {
@@ -355,7 +357,7 @@ void tick(const uint8_t tick_type) {
 					break;
 			}
 			BC->morse_pos++;
-			if(BC->morse_pos == MORSE_LENGTH) {
+			if(BC->morse_pos == BC->morse_length) {
 				PIN_ENABLE.pio->PIO_CODR = PIN_ENABLE.mask;
 				BC->morse_finished = true;
 			}

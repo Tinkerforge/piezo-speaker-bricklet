@@ -31,7 +31,7 @@
 
 #define BRICKLET_FIRMWARE_VERSION_MAJOR 2
 #define BRICKLET_FIRMWARE_VERSION_MINOR 0
-#define BRICKLET_FIRMWARE_VERSION_REVISION 0
+#define BRICKLET_FIRMWARE_VERSION_REVISION 1
 
 #define BRICKLET_HARDWARE_VERSION_MAJOR 1
 #define BRICKLET_HARDWARE_VERSION_MINOR 0
@@ -44,15 +44,17 @@
 
 #define PIN_ENABLE   (BS->pin1_ad)
 #define PIN_FEEDBACK (BS->pin4_io)
-#define MORSE_LENGTH 60
+#define MAX_MORSE_LENGTH 60
 #define CALIBRATION_LENGTH 65
 
 typedef struct {
 	uint32_t beep_duration;
 	uint32_t morse_duration;
-	char morse[MORSE_LENGTH];
+	char morse[MAX_MORSE_LENGTH];
 	bool morse_buzz;
 	uint8_t morse_pos;
+
+	uint8_t morse_length;
 
 	bool beep_finished;
 	bool morse_finished;
