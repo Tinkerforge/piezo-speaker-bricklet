@@ -2,22 +2,22 @@ var Tinkerforge = require('tinkerforge');
 
 var HOST = 'localhost';
 var PORT = 4223;
-var UID = 'iMv';// Change to your UID
+var UID = 'iMv'; // Change to your UID
 
-var ipcon = new Tinkerforge.IPConnection();// Create IP connection
-var ps = new Tinkerforge.BrickletPiezoSpeaker(UID, ipcon);// Create device object
+var ipcon = new Tinkerforge.IPConnection(); // Create IP connection
+var ps = new Tinkerforge.BrickletPiezoSpeaker(UID, ipcon); // Create device object
 
 ipcon.connect(HOST, PORT,
     function(error) {
-        console.log('Error: '+error);        
+        console.log('Error: '+error);
     }
-);// Connect to brickd
-
+); // Connect to brickd
 // Don't use device before ipcon is connected
+
 ipcon.on(Tinkerforge.IPConnection.CALLBACK_CONNECTED,
     function(connectReason) {
-        //Make 2 second beep with a frequency of 1kHz
-        ps.beep(2000, 1000);      
+        // Make 2 second beep with a frequency of 1kHz
+        ps.beep(2000, 1000);
     }
 );
 
@@ -28,4 +28,3 @@ process.stdin.on('data',
         process.exit(0);
     }
 );
-
