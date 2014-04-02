@@ -16,7 +16,7 @@ $ipcon->connect(&HOST, &PORT); # Connect to brickd
 # Morse SOS with a frequency of 2kHz
 $ps->morse_code('... --- ...', 2000);
 
-print "\nPress any key to exit...\n";
+print "Press any key to exit...\n";
 <STDIN>;
 $ipcon->disconnect();
 
