@@ -11,9 +11,9 @@ function octave_example_morse_code
     ipcon.connect(HOST, PORT); % Connect to brickd
     % Don't use device before ipcon is connected
 
-    % Morse SOS
+    % Morse SOS with a frequency of 2kHz
     ps.morseCode("... --- ...", 2000);
 
-    input("\nPress any key to exit...\n", "s");
+    input("Press any key to exit...\n", "s");
     ipcon.disconnect();
 end

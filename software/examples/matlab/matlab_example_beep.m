@@ -12,9 +12,9 @@ function matlab_example_beep
     ipcon.connect(HOST, PORT); % Connect to brickd
     % Don't use device before ipcon is connected
 
-    % Make 2 second beep
+    % Make 2 second beep with a frequency of 1kHz
     ps.beep(2000, 1000);
 
-    input('\nPress any key to exit...\n', 's');
+    input('Press any key to exit...\n', 's');
     ipcon.disconnect();
 end
