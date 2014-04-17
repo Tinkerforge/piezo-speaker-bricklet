@@ -1,4 +1,4 @@
-function octave_example_morse_code
+function octave_example_morse_code()
     more off;
     
     HOST = "localhost";

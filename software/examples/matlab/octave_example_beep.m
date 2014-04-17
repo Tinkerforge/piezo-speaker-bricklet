@@ -1,4 +1,4 @@
-function octave_example_beep
+function octave_example_beep()
     more off;
     
     HOST = "localhost";

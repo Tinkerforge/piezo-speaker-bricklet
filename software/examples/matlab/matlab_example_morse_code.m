@@ -1,4 +1,4 @@
-function matlab_example_morse_code
+function matlab_example_morse_code()
     import com.tinkerforge.IPConnection;
     import com.tinkerforge.BrickletPiezoSpeaker;
 
@@ -18,4 +18,3 @@ function matlab_example_morse_code
     input('Press any key to exit...\n', 's');
     ipcon.disconnect();
 end
-

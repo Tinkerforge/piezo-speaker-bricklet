@@ -1,4 +1,4 @@
-function matlab_example_beep
+function matlab_example_beep()
     import com.tinkerforge.IPConnection;
     import com.tinkerforge.BrickletPiezoSpeaker;
 
