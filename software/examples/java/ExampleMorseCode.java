@@ -18,6 +18,7 @@ public class ExampleMorseCode {
 		// Morse SOS with a frequency of 2kHz
 		ps.morseCode("... --- ...", 2000);
 
-		System.console().readLine("Press key to exit\n");
+		System.out.println("Press key to exit"); System.in.read();
+		ipcon.disconnect();
 	}
 }

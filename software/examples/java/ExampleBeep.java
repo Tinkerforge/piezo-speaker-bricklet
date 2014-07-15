@@ -18,6 +18,7 @@ public class ExampleBeep {
 		// Make 2 second beep with a frequency of 1kHz
 		ps.beep(2000, 1000);
 
-		System.console().readLine("Press key to exit\n");
+		System.out.println("Press key to exit"); System.in.read();
+		ipcon.disconnect();
 	}
 }
