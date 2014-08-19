@@ -1,5 +1,6 @@
 /* piezo-speaker-bricklet
  * Copyright (C) 2013 Olaf Lüke <olaf@tinkerforge.com>
+ * Copyright (C) 2014 Matthias Bolte <matthias@tinkerforge.com>
  *
  * piezo-speaker.c: Implementation of Piezo Speaker Bricklet message
  *
@@ -32,6 +33,9 @@
 #define MORSE_DIT_LENGTH   100
 #define MORSE_DAH_LENGTH   (MORSE_DIT_LENGTH*3)
 #define MORSE_SPACE_LENGTH MORSE_DIT_LENGTH
+
+#define BEEP_DURATION_OFF      0
+#define BEEP_DURATION_INFINITE UINT32_MAX
 
 void invocation(const ComType com, const uint8_t *data) {
 	switch(((MessageHeader*)data)->fid) {
@@ -141,7 +145,7 @@ void constructor(void) {
     BC->morse_pos = 60;
     BC->morse_duration = 0;
     BC->morse_buzz = false;
-    BC->beep_duration = 0;
+    BC->beep_duration = BEEP_DURATION_OFF;
     BC->morse_length = 0;
 
     load_calibration();
@@ -160,21 +164,32 @@ void destructor(void) {
 void beep(const ComType com, const Beep *data) {
 	// Disable morse code beeping
 	BC->morse_pos = MAX_MORSE_LENGTH;
-    BC->morse_duration = 0;
-    BC->morse_buzz = false;
+	BC->morse_duration = 0;
+	BC->morse_buzz = false;
 
-    set_frequency(frequency_to_frequency_value(data->frequency));
+	// Only set frequency if there will be a beep
+	if(data->duration != BEEP_DURATION_OFF) {
+		set_frequency(frequency_to_frequency_value(data->frequency));
+	}
 
-	// Enable beep
-	PIN_ENABLE.pio->PIO_SODR = PIN_ENABLE.mask;
+	// Disable beep if it's currently on, but should be off
+	if(BC->beep_duration != BEEP_DURATION_OFF && data->duration == BEEP_DURATION_OFF) {
+		PIN_ENABLE.pio->PIO_CODR = PIN_ENABLE.mask;
+	}
+
 	BC->beep_duration = data->duration;
+
+	// Enable beep if it should be on
+	if(BC->beep_duration != BEEP_DURATION_OFF) {
+		PIN_ENABLE.pio->PIO_SODR = PIN_ENABLE.mask;
+	}
 
 	BA->com_return_setter(com, data);
 }
 
 void morse_code(const ComType com, const MorseCode *data) {
 	// Disable beep
-	BC->beep_duration = 0;
+	BC->beep_duration = BEEP_DURATION_OFF;
 
 	// Enable morse code beeping
 	BC->morse_pos = 0;
@@ -312,12 +327,14 @@ void tick(const uint8_t tick_type) {
 	}
 
 	if(tick_type & TICK_TASK_TYPE_CALCULATION) {
-		if(BC->beep_duration > 0) {
-			BC->beep_duration--;
+		if(BC->beep_duration != BEEP_DURATION_OFF) {
+			if(BC->beep_duration != BEEP_DURATION_INFINITE) {
+				BC->beep_duration--;
 
-			if(BC->beep_duration == 0) {
-				PIN_ENABLE.pio->PIO_CODR = PIN_ENABLE.mask;
-				BC->beep_finished = true;
+				if(BC->beep_duration == BEEP_DURATION_OFF) {
+					PIN_ENABLE.pio->PIO_CODR = PIN_ENABLE.mask;
+					BC->beep_finished = true;
+				}
 			}
 		} else if(BC->morse_duration > 0) {
 			BC->morse_duration--;

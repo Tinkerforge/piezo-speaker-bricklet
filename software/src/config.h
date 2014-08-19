@@ -1,5 +1,6 @@
 /* piezo-speaker-bricklet
  * Copyright (C) 2013 Olaf Lüke <olaf@tinkerforge.com>
+ * Copyright (C) 2014 Matthias Bolte <matthias@tinkerforge.com>
  *
  * config.h: Piezo Speaker Bricklet specific configuration
  *
@@ -31,7 +32,7 @@
 
 #define BRICKLET_FIRMWARE_VERSION_MAJOR 2
 #define BRICKLET_FIRMWARE_VERSION_MINOR 0
-#define BRICKLET_FIRMWARE_VERSION_REVISION 1
+#define BRICKLET_FIRMWARE_VERSION_REVISION 2
 
 #define BRICKLET_HARDWARE_VERSION_MAJOR 1
 #define BRICKLET_HARDWARE_VERSION_MINOR 0
