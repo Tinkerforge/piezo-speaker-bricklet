@@ -1,2 +1,3 @@
 2.0.0: Initial version
 2.0.1: Fix morse-code-overwrite bug
+2.0.2: Duration 0 stops beep, duration UINT32_MAX results in an infinite beep
