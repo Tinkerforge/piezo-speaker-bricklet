@@ -17,7 +17,7 @@ class Example
 		// Morse SOS with a frequency of 2kHz
 		ps.MorseCode("... --- ...", 2000);
 
-		System.Console.WriteLine("Press key to exit");
-		System.Console.ReadKey();
+		System.Console.WriteLine("Press enter to exit");
+		System.Console.ReadLine();
 	}
 }
