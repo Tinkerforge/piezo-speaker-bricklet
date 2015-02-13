@@ -13,10 +13,10 @@ Module ExampleBeep
         ' Don't use device before ipcon is connected
 
         ' Make a beep for 2 seconds with a frequency of 1kHz
-		ps.Beep(2000, 1000)
+        ps.Beep(2000, 1000)
 
         System.Console.WriteLine("Press key to exit")
-        System.Console.ReadKey()
+        System.Console.ReadLine()
         ipcon.Disconnect()
     End Sub
 End Module

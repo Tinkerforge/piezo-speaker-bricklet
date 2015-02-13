@@ -13,10 +13,10 @@ Module ExampleBeep
         ' Don't use device before ipcon is connected
 
         ' Morse SOS with a frequency of 2kHz
-		ps.MorseCode("... --- ...", 2000)
+        ps.MorseCode("... --- ...", 2000)
 
         System.Console.WriteLine("Press key to exit")
-        System.Console.ReadKey()
+        System.Console.ReadLine()
         ipcon.Disconnect()
     End Sub
 End Module
