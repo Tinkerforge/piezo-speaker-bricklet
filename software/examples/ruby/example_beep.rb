@@ -8,7 +8,7 @@ include Tinkerforge
 
 HOST = 'localhost'
 PORT = 4223
-UID = '6tU' # Change to your UID
+UID = 'XYZ' # Change to your UID
 
 ipcon = IPConnection.new # Create IP connection
 ps = BrickletPiezoSpeaker.new UID, ipcon # Create device object
@@ -21,3 +21,4 @@ ps.beep 2000, 1000
 
 puts 'Press key to exit'
 $stdin.gets
+ipcon.disconnect

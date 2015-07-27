@@ -14,7 +14,7 @@ int main() {
 
 	// Create device object
 	PiezoSpeaker ps;
-	piezo_speaker_create(&ps, UID, &ipcon); 
+	piezo_speaker_create(&ps, UID, &ipcon);
 
 	// Connect to brickd
 	if(ipcon_connect(&ipcon, HOST, PORT) < 0) {
@@ -28,5 +28,5 @@ int main() {
 
 	printf("Press key to exit\n");
 	getchar();
-	ipcon_destroy(&ipcon);
+	ipcon_destroy(&ipcon); // Calls ipcon_disconnect internally
 }
