@@ -18,7 +18,7 @@ type
 const
   HOST = 'localhost';
   PORT = 4223;
-  UID = '6tU'; { Change to your UID }
+  UID = 'XYZ'; { Change to your UID }
 
 var
   e: TExample;
@@ -40,7 +40,7 @@ begin
 
   WriteLn('Press key to exit');
   ReadLn;
-  ipcon.Destroy;
+  ipcon.Destroy; { Calls ipcon.Disconnect internally }
 end;
 
 begin
