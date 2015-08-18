@@ -1,6 +1,6 @@
 Imports Tinkerforge
 
-Module ExampleBeep
+Module ExampleMorseCode
     Const HOST As String = "localhost"
     Const PORT As Integer = 4223
     Const UID As String = "XYZ" ' Change to your UID
