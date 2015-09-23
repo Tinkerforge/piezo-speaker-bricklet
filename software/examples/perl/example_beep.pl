@@ -16,6 +16,6 @@ $ipcon->connect(&HOST, &PORT); # Connect to brickd
 # Make 2 second beep with a frequency of 1kHz
 $ps->beep(2000, 1000);
 
-print "Press any key to exit...\n";
+print "Press key to exit\n";
 <STDIN>;
 $ipcon->disconnect();

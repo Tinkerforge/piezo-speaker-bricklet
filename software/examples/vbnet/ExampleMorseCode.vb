@@ -1,3 +1,4 @@
+Imports System
 Imports Tinkerforge
 
 Module ExampleMorseCode
@@ -15,8 +16,8 @@ Module ExampleMorseCode
         ' Morse SOS with a frequency of 2kHz
         ps.MorseCode("... --- ...", 2000)
 
-        System.Console.WriteLine("Press key to exit")
-        System.Console.ReadLine()
+        Console.WriteLine("Press key to exit")
+        Console.ReadLine()
         ipcon.Disconnect()
     End Sub
 End Module

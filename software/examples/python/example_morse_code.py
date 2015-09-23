@@ -16,7 +16,7 @@ if __name__ == "__main__":
     # Don't use device before ipcon is connected
 
     # Morse SOS with a frequency of 2kHz
-    ps.morse_code('... --- ...', 2000)
+    ps.morse_code("... --- ...", 2000)
 
-    raw_input('Press key to exit\n') # Use input() in Python 3
+    raw_input("Press key to exit\n") # Use input() in Python 3
     ipcon.disconnect()

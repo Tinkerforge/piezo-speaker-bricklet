@@ -4,8 +4,8 @@ function matlab_example_morse_code()
 
     HOST = 'localhost';
     PORT = 4223;
-    UID = 'mGW'; % Change to your UID
-    
+    UID = 'XYZ'; % Change to your UID
+
     ipcon = IPConnection(); % Create IP connection
     ps = BrickletPiezoSpeaker(UID, ipcon); % Create device object
 
@@ -15,6 +15,6 @@ function matlab_example_morse_code()
     % Morse SOS with a frequency of 2kHz
     ps.morseCode('... --- ...', 2000);
 
-    input('Press any key to exit...\n', 's');
+    input('Press key to exit\n', 's');
     ipcon.disconnect();
 end

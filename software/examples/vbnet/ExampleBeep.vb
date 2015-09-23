@@ -1,3 +1,4 @@
+Imports System
 Imports Tinkerforge
 
 Module ExampleBeep
@@ -15,8 +16,8 @@ Module ExampleBeep
         ' Make 2 second beep with a frequency of 1kHz
         ps.Beep(2000, 1000)
 
-        System.Console.WriteLine("Press key to exit")
-        System.Console.ReadLine()
+        Console.WriteLine("Press key to exit")
+        Console.ReadLine()
         ipcon.Disconnect()
     End Sub
 End Module

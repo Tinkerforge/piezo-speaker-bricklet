@@ -1,3 +1,4 @@
+using System;
 using Tinkerforge;
 
 class Example
@@ -17,8 +18,8 @@ class Example
 		// Make 2 second beep with a frequency of 1kHz
 		ps.Beep(2000, 1000);
 
-		System.Console.WriteLine("Press enter to exit");
-		System.Console.ReadLine();
+		Console.WriteLine("Press enter to exit");
+		Console.ReadLine();
 		ipcon.Disconnect();
 	}
 }

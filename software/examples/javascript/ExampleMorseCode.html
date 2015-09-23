@@ -34,13 +34,13 @@
                 var ps = new Tinkerforge.BrickletPiezoSpeaker(UID, ipcon); // Create device object
                 ipcon.connect(HOST, PORT,
                     function(error) {
-                        textArea.value += 'Error: '+error+ '\n';
+                        textArea.value += 'Error: ' + error + '\n';
                     }
                 ); // Connect to brickd
                 // Don't use device before ipcon is connected
 
                 ipcon.on(Tinkerforge.IPConnection.CALLBACK_CONNECTED,
-                    function(connectReason) {
+                    function (connectReason) {
                         // Morse SOS with a frequency of 2kHz
                         ps.morseCode('... --- ...', 2000);
                     }

@@ -8,7 +8,7 @@ use Tinkerforge\BrickletPiezoSpeaker;
 
 const HOST = 'localhost';
 const PORT = 4223;
-const UID = '6tU'; // Change to your UID
+const UID = 'XYZ'; // Change to your UID
 
 $ipcon = new IPConnection(); // Create IP connection
 $ps = new BrickletPiezoSpeaker(UID, $ipcon); // Create device object
@@ -21,5 +21,6 @@ $ps->beep(2000, 1000);
 
 echo "Press key to exit\n";
 fgetc(fopen('php://stdin', 'r'));
+$ipcon->disconnect();
 
 ?>
