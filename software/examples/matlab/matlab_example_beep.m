@@ -7,7 +7,7 @@ function matlab_example_beep()
     UID = 'XYZ'; % Change to your UID
 
     ipcon = IPConnection(); % Create IP connection
-    ps = BrickletPiezoSpeaker(UID, ipcon); % Create device object
+    ps = handle(BrickletPiezoSpeaker(UID, ipcon), 'CallbackProperties'); % Create device object
 
     ipcon.connect(HOST, PORT); % Connect to brickd
     % Don't use device before ipcon is connected
