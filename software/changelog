@@ -1,8 +1,8 @@
-2.0.0:
+2013-10-18: 2.0.0 (bbeb26f)
 - Initial version
 
-2.0.1:
+2013-12-09: 2.0.1 (902c1e7)
 - Fix morse-code-overwrite bug
 
-2.0.2:
+2014-08-19: 2.0.2 (5b93ea3)
 - Duration 0 stops beep, duration UINT32_MAX results in an infinite beep
