@@ -28,6 +28,7 @@ int main(void) {
 
 	printf("Press key to exit\n");
 	getchar();
+	piezo_speaker_destroy(&ps);
 	ipcon_destroy(&ipcon); // Calls ipcon_disconnect internally
 	return 0;
 }
