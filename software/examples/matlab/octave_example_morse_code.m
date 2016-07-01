@@ -3,7 +3,7 @@ function octave_example_morse_code()
 
     HOST = "localhost";
     PORT = 4223;
-    UID = "XYZ"; % Change to your UID
+    UID = "XYZ"; % Change XYZ to the UID of your Piezo Speaker Bricklet
 
     ipcon = java_new("com.tinkerforge.IPConnection"); % Create IP connection
     ps = java_new("com.tinkerforge.BrickletPiezoSpeaker", UID, ipcon); % Create device object
