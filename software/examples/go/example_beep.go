@@ -2,8 +2,8 @@ package main
 
 import (
 	"fmt"
-	"tinkerforge/ipconnection"
-	"tinkerforge/piezo_speaker_bricklet"
+	"github.com/tinkerforge/go-api-bindings/ipconnection"
+	"github.com/tinkerforge/go-api-bindings/piezo_speaker_bricklet"
 )
 
 const ADDR string = "localhost:4223"
