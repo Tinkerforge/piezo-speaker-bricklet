@@ -1,0 +1,7 @@
+
+
+# Change XYZ to the UID of your Piezo Speaker Bricklet
+
+setup:
+	# Make 2 second beep with a frequency of 1kHz
+	publish '{"duration": 2000, "frequency": 1000}' to tinkerforge/request/piezo_speaker_bricklet/XYZ/beep 
