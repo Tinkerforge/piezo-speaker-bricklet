@@ -7,6 +7,6 @@
 2014-08-19: 2.0.2 (5b93ea3)
 - Duration 0 stops beep, duration UINT32_MAX results in an infinite beep
 
-2019-08-19: 2.0.3 (TBD)
+2019-08-19: 2.0.3 (909d5a3)
 - Don't disable IRQs during calibration, since newer Brick versions use
   interrupts during I2C communication
