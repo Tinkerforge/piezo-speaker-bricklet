@@ -247,7 +247,6 @@ void save_calibration(void) {
 }
 
 void calibrate(const ComType com, const Calibrate *data) {
-	__disable_irq();
 	PIN_ENABLE.pio->PIO_SODR = PIN_ENABLE.mask;
 
 	uint32_t tick_sum = 0;
@@ -293,7 +292,6 @@ void calibrate(const ComType com, const Calibrate *data) {
 
 	PIN_ENABLE.pio->PIO_CODR = PIN_ENABLE.mask;
 	save_calibration();
-	__enable_irq();
 
 	CalibrateReturn cr;
 	cr.header         = data->header;
