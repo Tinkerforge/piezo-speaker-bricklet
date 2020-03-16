@@ -2,4 +2,4 @@
 
 setup:
 	# Morse SOS with a frequency of 2kHz
-	publish '{"morse": "... --- ...", "frequency": 2000}' to tinkerforge/request/piezo_speaker_bricklet/XYZ/morse_code 
+	publish '{"morse": "... --- ...", "frequency": 2000}' to tinkerforge/request/piezo_speaker_bricklet/XYZ/morse_code
