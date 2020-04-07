@@ -14,7 +14,7 @@ fn main() -> Result<(), Box<dyn Error>> {
                                           // Don't use device before ipcon is connected.
 
     // Morse SOS with a frequency of 2kHz
-    ps.morse_code("... --- ...".to_string(), 2000);
+    ps.morse_code("... --- ...".to_string(), 2000).recv()?;
 
     println!("Press enter to exit.");
     let mut _input = String::new();

@@ -14,7 +14,7 @@ fn main() -> Result<(), Box<dyn Error>> {
                                           // Don't use device before ipcon is connected.
 
     // Make 2 second beep with a frequency of 1kHz
-    ps.beep(2000, 1000);
+    ps.beep(2000, 1000).recv()?;
 
     println!("Press enter to exit.");
     let mut _input = String::new();
